@@ -708,6 +708,8 @@
             transform: translateY(20px) scale(0.95);
             transition: var(--transition);
             position: relative;
+            /* Forza la scatola a contenere perfettamente gli elementi */
+            box-sizing: border-box !important;
         }
 
         .modal-overlay.active .modal-box {
@@ -745,8 +747,14 @@
             color: #000;
             border: 2px solid #000;
             box-shadow: 4px 4px 0px var(--white);
-            padding: 15px 100%;
-            width: 100%;
+            /* Risoluzione definitiva del Bug: */
+            padding: 15px 20px !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            display: block !important;
+            margin: 0 auto !important;
+            
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
             font-size: 1.1rem;
@@ -768,10 +776,15 @@
         /* =========================================
            RESPONSIVE DESIGN
            ========================================= */
+        @media (max-width: 1200px) {
+            .hero-text h1 { font-size: 4.5rem; }
+        }
+
         @media (max-width: 1024px) {
             .hero-text h1 { font-size: 4rem; }
             .section-title h2 { font-size: 3rem; }
-            .nav-links { gap: 30px; }
+            .nav-links { gap: 20px; }
+            .hero-content { gap: 30px; }
         }
 
         @media (max-width: 768px) {
@@ -784,16 +797,45 @@
                 padding-top: 20px;
             }
             .hero-text p { margin: 0 auto 30px; border-left: none; padding-left: 0; }
-            .hero-text h1 { font-size: 3.5rem; }
+            .hero-text h1 { font-size: 3.2rem; }
+            .hero-image img { max-width: 100%; }
             
-            .content { padding: 80px 5%; }
+            .content { padding: 60px 5%; }
+            .section-title h2 { font-size: 2.5rem; }
+            
+            .menu-container {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
             
             .menu-item:hover {
                 transform: translate(-4px, -4px);
                 box-shadow: 6px 6px 0px var(--primary);
             }
             
-            .social-links { flex-direction: column; }
+            .social-links { 
+                flex-direction: column; 
+                align-items: center;
+            }
+            
+            .social-links a {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 2.5rem; letter-spacing: -1px; }
+            .brand-name { font-size: 1.2rem; }
+            .nav-btn { padding: 8px 16px; font-size: 0.8rem; }
+            .hero-btn { padding: 15px 30px; font-size: 1rem; }
+            .section-title h2 { font-size: 2rem; }
+            .footer-logo { font-size: 2rem; }
+            .ticker-content { font-size: 1.1rem; gap: 30px; }
+            .modal-box { padding: 30px 20px; }
+            .modal-title { font-size: 1.8rem; }
+            .footer-text { font-size: 0.8rem; line-height: 1.4; padding: 0 10px; }
         }
     </style>
 </head>
