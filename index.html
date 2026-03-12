@@ -164,6 +164,8 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            text-decoration: none;
+            cursor: pointer;
         }
 
         .brand-name {
@@ -854,7 +856,7 @@
 
     <!-- Header -->
     <header id="main-header">
-        <div class="logo-container">
+        <a href="#banner" class="logo-container">
             <!-- Il logo vero, invisibile finché l'animazione non termina -->
             <svg id="main-logo" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="background: #000; padding: 4px; border: 2px solid var(--primary); box-shadow: 4px 4px 0px var(--primary); border-radius: 8px; transform: rotate(-3deg); opacity: 0;">
                 <path d="M12 2L3 13h18L12 2z" fill="var(--primary)" fill-opacity="0.15"></path>
@@ -865,7 +867,7 @@
                 <span class="brand-name">LA GRANDE PIRAMIDE</span>
                 <span class="brand-sub">D'EGITTO</span>
             </div>
-        </div>
+        </a>
         <nav>
             <div class="nav-links">
                 <a href="#banner">Home</a>
@@ -1198,7 +1200,7 @@
             });
 
             // Smooth Scrolling
-            const links = document.querySelectorAll('nav a, .hero-btn');
+            const links = document.querySelectorAll('nav a, .hero-btn, .logo-container');
             links.forEach(link => {
                 link.addEventListener('click', function(e) {
                     const targetId = this.getAttribute('href');
