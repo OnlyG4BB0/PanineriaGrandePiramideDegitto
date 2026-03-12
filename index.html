@@ -274,16 +274,23 @@
 
         .badge {
             display: inline-block;
-            background-color: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+            background-color: var(--primary); /* Sfondo giallo pieno */
+            color: #000; /* Testo nero scuro */
+            border: 2px solid #000; /* Bordo nero spesso */
             padding: 8px 16px;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
+            font-weight: 900; /* Testo ancora più massiccio */
             font-size: 0.85rem;
             margin-bottom: 24px;
             letter-spacing: 2px;
-            box-shadow: 4px 4px 0px var(--primary);
+            box-shadow: 4px 4px 0px var(--white); /* Ombra bianca per staccare dal buio */
+            transform: rotate(-2deg); /* Leggera inclinazione stile sticker */
+            transition: transform 0.2s, box-shadow 0.2s; /* Predisposizione all'animazione */
+        }
+
+        .badge:hover {
+            transform: translate(2px, 2px) rotate(-2deg);
+            box-shadow: 2px 2px 0px var(--white);
         }
 
         .hero-text h1 {
@@ -462,6 +469,72 @@
             letter-spacing: 4px;
         }
 
+        /* =========================================
+           LEGENDA INFO FORMATI
+           ========================================= */
+        .menu-legend {
+            background-color: var(--bg-surface);
+            border: 3px solid var(--primary);
+            padding: 30px 25px 20px;
+            margin: 0 auto 60px auto;
+            max-width: 1000px;
+            box-shadow: 10px 10px 0px var(--primary);
+            position: relative;
+            transform: rotate(-1deg);
+        }
+        
+        .menu-legend::before {
+            content: '📌 COSA COMPRENDE IL MENÙ?';
+            position: absolute;
+            top: -18px;
+            left: -10px;
+            background-color: var(--white);
+            color: #000;
+            padding: 5px 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0px var(--primary);
+            transform: rotate(-2deg);
+        }
+
+        .menu-legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .legend-item {
+            background: #000;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .legend-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .legend-item h4 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .legend-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .legend-item p b {
+            color: var(--white);
+        }
+
         .menu-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -567,6 +640,41 @@
             flex-grow: 1;
         }
 
+        /* Selettore Varianti Menù */
+        .size-selector {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .menu-size-select {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            border: 2px solid var(--border-color);
+            padding: 10px 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            appearance: none;
+            /* Icona freccia gialla personalizzata */
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFCC00%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px top 50%;
+            background-size: 12px auto;
+            border-radius: 0;
+            text-transform: uppercase;
+        }
+
+        .menu-size-select:hover, .menu-size-select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 4px 4px 0px var(--primary);
+            transform: translate(-2px, -2px);
+        }
+
         .card-footer {
             display: flex;
             justify-content: space-between;
@@ -583,6 +691,7 @@
             padding: 0;
             border: none;
             display: inline-block;
+            transition: transform 0.2s, color 0.2s; /* Effetto per aggiornamento prezzo */
         }
 
         .allergens-btn {
@@ -817,6 +926,18 @@
             .content { padding: 60px 5%; }
             .section-title h2 { font-size: 2.5rem; }
             
+            /* Responsive Legenda */
+            .menu-legend {
+                padding: 30px 15px 15px;
+                transform: rotate(0deg);
+                margin-bottom: 40px;
+            }
+            .menu-legend::before {
+                left: 10px;
+                font-size: 0.85rem;
+                top: -15px;
+            }
+
             .menu-container {
                 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             }
@@ -938,6 +1059,28 @@
             </div>
         </div>
 
+        <!-- Pannello Informativo Formati Menù -->
+        <div class="menu-legend reveal">
+            <div class="menu-legend-grid">
+                <div class="legend-item">
+                    <h4>🍔 SOLO PANINO</h4>
+                    <p>L'hamburger nudo e crudo, servito caldo e incartato alla perfezione. Niente distrazioni.</p>
+                </div>
+                <div class="legend-item">
+                    <h4>🍟 MENÙ PICCOLO</h4>
+                    <p>Aggiunge <b>Patatine Piccole</b> (porzione standard) + <b>Bibita 33cl</b> in lattina o Acqua.</p>
+                </div>
+                <div class="legend-item">
+                    <h4>🥤 MENÙ MEDIO</h4>
+                    <p>Aggiunge <b>Patatine Medie</b> + <b>Bibita 50cl</b> alla spina o Birra piccola + <b>1 Starter</b> a scelta (es. Nuggets, Anelli di cipolla, ecc.).</p>
+                </div>
+                <div class="legend-item">
+                    <h4>👑 MENÙ GRANDE</h4>
+                    <p>Aggiunge <b>Patatine Grandi</b> + <b>Bibita 50cl</b> o Birra media + <b>2 Starter</b> a scelta (es. Nuggets, Anelli di cipolla, Crocchette, ecc.).</p>
+                </div>
+            </div>
+        </div>
+
         <div class="menu-container" id="menu-grid">
             
             <div class="reveal">
@@ -949,25 +1092,17 @@
                     <div class="card-body">
                         <h3>IL CLASSICO</h3>
                         <p>Croccante e spietato: prosciutto crudo stagionato, formaggio fuso colante e insalata fresca.</p>
+                        <div class="size-selector">
+                            <select class="menu-size-select" data-base-price="5.00">
+                                <option value="0">Solo Panino</option>
+                                <option value="1.50">Menù Piccolo (+€1.50)</option>
+                                <option value="2.50">Menù Medio (+€2.50)</option>
+                                <option value="3.50">Menù Grande (+€3.50)</option>
+                            </select>
+                        </div>
                         <div class="card-footer">
                             <span class="price-btn">€5.00</span>
-                            <button class="allergens-btn">Allergeni</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="reveal">
-                <div class="menu-item">
-                    <div class="img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1520072959219-c595dc870360?auto=format&fit=crop&q=80&w=600" alt="Green Power">
-                    </div>
-                    <div class="card-body">
-                        <h3>GREEN POWER</h3>
-                        <p>Panino morbido con mix di verdure grigliate a fiamma viva, hummus fatto in casa e insalata.</p>
-                        <div class="card-footer">
-                            <span class="price-btn">€6.00</span>
-                            <button class="allergens-btn">Allergeni</button>
+                            <button class="allergens-btn" data-sandwich="IL CLASSICO" data-allergens="Glutine, Lattosio">Allergeni</button>
                         </div>
                     </div>
                 </div>
@@ -981,9 +1116,17 @@
                     <div class="card-body">
                         <h3>SWEET KILLER</h3>
                         <p>Soffice pane artigianale annegato nella crema di nocciole e frutta fresca di stagione.</p>
+                        <div class="size-selector">
+                            <select class="menu-size-select" data-base-price="4.50">
+                                <option value="0">Solo Panino</option>
+                                <option value="1.50">Menù Piccolo (+€1.50)</option>
+                                <option value="2.50">Menù Medio (+€2.50)</option>
+                                <option value="3.50">Menù Grande (+€3.50)</option>
+                            </select>
+                        </div>
                         <div class="card-footer">
                             <span class="price-btn">€4.50</span>
-                            <button class="allergens-btn">Allergeni</button>
+                            <button class="allergens-btn" data-sandwich="SWEET KILLER" data-allergens="Glutine, Lattosio, Soia, Frutta a guscio">Allergeni</button>
                         </div>
                     </div>
                 </div>
@@ -997,9 +1140,17 @@
                     <div class="card-body">
                         <h3>EGG MASHUP</h3>
                         <p>Spessa frittata di uova fresche, pomodori a fette spesse e lattuga croccante. Intramontabile.</p>
+                        <div class="size-selector">
+                            <select class="menu-size-select" data-base-price="5.50">
+                                <option value="0">Solo Panino</option>
+                                <option value="1.50">Menù Piccolo (+€1.50)</option>
+                                <option value="2.50">Menù Medio (+€2.50)</option>
+                                <option value="3.50">Menù Grande (+€3.50)</option>
+                            </select>
+                        </div>
                         <div class="card-footer">
                             <span class="price-btn">€5.50</span>
-                            <button class="allergens-btn">Allergeni</button>
+                            <button class="allergens-btn" data-sandwich="EGG MASHUP" data-allergens="Glutine, Uova, Lattosio">Allergeni</button>
                         </div>
                     </div>
                 </div>
@@ -1014,25 +1165,17 @@
                     <div class="card-body">
                         <h3>BOLLITO DIRTY</h3>
                         <p>Montagna di bollito di carne tenerissima, inondata di salsa verde rustica e cipolle caramellate.</p>
+                        <div class="size-selector">
+                            <select class="menu-size-select" data-base-price="7.00">
+                                <option value="0">Solo Panino</option>
+                                <option value="1.50">Menù Piccolo (+€1.50)</option>
+                                <option value="2.50">Menù Medio (+€2.50)</option>
+                                <option value="3.50">Menù Grande (+€3.50)</option>
+                            </select>
+                        </div>
                         <div class="card-footer">
                             <span class="price-btn">€7.00</span>
-                            <button class="allergens-btn">Allergeni</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="reveal">
-                <div class="menu-item">
-                    <div class="img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&q=80&w=600" alt="Chicken Club">
-                    </div>
-                    <div class="card-body">
-                        <h3>CHICKEN CLUB</h3>
-                        <p>Pollo grigliato a strati, crema di avocado densa e una colata di maionese leggera.</p>
-                        <div class="card-footer">
-                            <span class="price-btn">€6.50</span>
-                            <button class="allergens-btn">Allergeni</button>
+                            <button class="allergens-btn" data-sandwich="BOLLITO DIRTY" data-allergens="Glutine, Uova, Pesce, Sedano">Allergeni</button>
                         </div>
                     </div>
                 </div>
@@ -1046,9 +1189,17 @@
                     <div class="card-body">
                         <h3>DARK TUNA</h3>
                         <p>Pane 100% integrale nero farcito con trancio di tonno spesso, uova sode e pomodori.</p>
+                        <div class="size-selector">
+                            <select class="menu-size-select" data-base-price="6.00">
+                                <option value="0">Solo Panino</option>
+                                <option value="1.50">Menù Piccolo (+€1.50)</option>
+                                <option value="2.50">Menù Medio (+€2.50)</option>
+                                <option value="3.50">Menù Grande (+€3.50)</option>
+                            </select>
+                        </div>
                         <div class="card-footer">
                             <span class="price-btn">€6.00</span>
-                            <button class="allergens-btn">Allergeni</button>
+                            <button class="allergens-btn" data-sandwich="DARK TUNA" data-allergens="Glutine, Pesce, Uova">Allergeni</button>
                         </div>
                     </div>
                 </div>
@@ -1062,9 +1213,17 @@
                     <div class="card-body">
                         <h3>SALMON LUX</h3>
                         <p>Salmone affumicato scozzese pregiato, formaggio spalmabile abbondante e rucola piccantina.</p>
+                        <div class="size-selector">
+                            <select class="menu-size-select" data-base-price="8.00">
+                                <option value="0">Solo Panino</option>
+                                <option value="1.50">Menù Piccolo (+€1.50)</option>
+                                <option value="2.50">Menù Medio (+€2.50)</option>
+                                <option value="3.50">Menù Grande (+€3.50)</option>
+                            </select>
+                        </div>
                         <div class="card-footer">
                             <span class="price-btn">€8.00</span>
-                            <button class="allergens-btn">Allergeni</button>
+                            <button class="allergens-btn" data-sandwich="SALMON LUX" data-allergens="Glutine, Pesce, Lattosio">Allergeni</button>
                         </div>
                     </div>
                 </div>
@@ -1078,9 +1237,17 @@
                     <div class="card-body">
                         <h3>CRISPY KING</h3>
                         <p>Il re dello street food: cotoletta di pollo fritta dorata ed extra croccante, iceberg e mayo.</p>
+                        <div class="size-selector">
+                            <select class="menu-size-select" data-base-price="7.50">
+                                <option value="0">Solo Panino</option>
+                                <option value="1.50">Menù Piccolo (+€1.50)</option>
+                                <option value="2.50">Menù Medio (+€2.50)</option>
+                                <option value="3.50">Menù Grande (+€3.50)</option>
+                            </select>
+                        </div>
                         <div class="card-footer">
                             <span class="price-btn">€7.50</span>
-                            <button class="allergens-btn">Allergeni</button>
+                            <button class="allergens-btn" data-sandwich="CRISPY KING" data-allergens="Glutine, Uova, Lattosio">Allergeni</button>
                         </div>
                     </div>
                 </div>
@@ -1090,14 +1257,22 @@
                 <div class="menu-item">
                     <div class="tag-popular">👑 PREMIUM</div>
                     <div class="img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1586816001966-79b736744398?auto=format&fit=crop&q=80&w=600" alt="Truffle Beef">
+                        <img src="https://images.unsplash.com/photo-1608767221051-2b9d18f35a2f?auto=format&fit=crop&q=80&w=600" onerror="this.src='https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&q=80&w=600'" alt="Truffle Beef">
                     </div>
                     <div class="card-body">
                         <h3>TRUFFLE BEEF</h3>
                         <p>L'eccellenza assoluta: filetto di manzo scelto, funghi porcini a fette e salsa al tartufo nero.</p>
+                        <div class="size-selector">
+                            <select class="menu-size-select" data-base-price="12.00">
+                                <option value="0">Solo Panino</option>
+                                <option value="1.50">Menù Piccolo (+€1.50)</option>
+                                <option value="2.50">Menù Medio (+€2.50)</option>
+                                <option value="3.50">Menù Grande (+€3.50)</option>
+                            </select>
+                        </div>
                         <div class="card-footer">
                             <span class="price-btn">€12.00</span>
-                            <button class="allergens-btn">Allergeni</button>
+                            <button class="allergens-btn" data-sandwich="TRUFFLE BEEF" data-allergens="Glutine, Lattosio">Allergeni</button>
                         </div>
                     </div>
                 </div>
@@ -1118,13 +1293,17 @@
         <p class="footer-text">&copy; 2026 LA GRANDE PIRAMIDE D'EGITTO. Solo per i veri affamati.</p>
     </footer>
 
-    <!-- Modal Allergeni Brutalista -->
+    <!-- Modal Allergeni Brutalista (Aggiornato) -->
     <div class="modal-overlay" id="allergen-modal">
         <div class="modal-box">
-            <div style="font-size: 4rem; margin-bottom: 20px; animation: pulse 1s infinite;">⚠️</div>
-            <h3 class="modal-title">ALLERGENI?</h3>
-            <p class="modal-text">Sinceramente... <b>NON LI SO!</b> 😂<br><br><small style="color:#777; font-size: 0.9rem;">(Chiedi direttamente al banco per non saltare in aria!)</small></p>
-            <button class="modal-close-btn" id="close-modal">RICEVUTO!</button>
+            <div style="font-size: 3rem; margin-bottom: 15px; animation: pulse 1s infinite;">⚠️</div>
+            <h3 class="modal-title" id="modal-sandwich-name">NOME PANINO</h3>
+            <p class="modal-text" style="margin-bottom: 15px; font-size: 1rem;">Questo prodotto contiene i seguenti allergeni:</p>
+            <div id="modal-allergen-list" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 30px;">
+                <!-- Gli allergeni verranno inseriti qui dal Javascript -->
+            </div>
+            <p style="font-size: 0.8rem; color: #777; margin-bottom: 25px; line-height: 1.4;">Attenzione: per le varianti "Menù", i fritti e le salse potrebbero introdurre allergeni extra (es. Soia, Arachidi, Sedano). Chiedi in cassa!</p>
+            <button class="modal-close-btn" id="close-modal">HO CAPITO</button>
         </div>
     </div>
 
@@ -1198,13 +1377,53 @@
                 }
             });
 
-            // Logica Modal Allergeni
+            // Logica Modal Allergeni (Aggiornata per info dinamiche)
             const modalOverlay = document.getElementById('allergen-modal');
             const closeBtn = document.getElementById('close-modal');
             const allergensBtns = document.querySelectorAll('.allergens-btn');
+            const modalSandwichName = document.getElementById('modal-sandwich-name');
+            const modalAllergenList = document.getElementById('modal-allergen-list');
 
             allergensBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
+                    const sandwichName = this.getAttribute('data-sandwich');
+                    const allergensStr = this.getAttribute('data-allergens');
+                    const allergens = allergensStr ? allergensStr.split(',') : [];
+                    
+                    // Imposta il nome del panino nel titolo
+                    modalSandwichName.textContent = sandwichName;
+                    
+                    // Pulisce la lista precedente
+                    modalAllergenList.innerHTML = '';
+                    
+                    // Genera le etichette degli allergeni
+                    if (allergens.length === 0 || allergens[0] === '') {
+                        const span = document.createElement('span');
+                        span.style.background = 'var(--bg-dark)';
+                        span.style.color = 'var(--white)';
+                        span.style.padding = '8px 16px';
+                        span.style.border = '1px solid var(--border-color)';
+                        span.style.fontWeight = '700';
+                        span.style.fontSize = '0.85rem';
+                        span.textContent = 'NESSUN ALLERGENE NOTO';
+                        modalAllergenList.appendChild(span);
+                    } else {
+                        allergens.forEach(allergen => {
+                            const span = document.createElement('span');
+                            span.style.background = 'var(--primary)';
+                            span.style.color = '#000';
+                            span.style.padding = '6px 14px';
+                            span.style.border = '2px solid #000';
+                            span.style.boxShadow = '2px 2px 0px var(--white)';
+                            span.style.fontWeight = '900';
+                            span.style.fontSize = '0.85rem';
+                            span.style.textTransform = 'uppercase';
+                            span.textContent = allergen.trim();
+                            modalAllergenList.appendChild(span);
+                        });
+                    }
+
+                    // Mostra il modal
                     modalOverlay.classList.add('active');
                 });
             });
@@ -1264,6 +1483,36 @@
                 }
                 observer.observe(item);
             });
+
+            // ==========================================
+            // LOGICA AGGIORNAMENTO PREZZO FORMATO MENU
+            // ==========================================
+            const sizeSelects = document.querySelectorAll('.menu-size-select');
+            
+            sizeSelects.forEach(select => {
+                select.addEventListener('change', function() {
+                    // Prendi il prezzo di base dal data-attribute
+                    const basePrice = parseFloat(this.getAttribute('data-base-price'));
+                    // Prendi il costo aggiuntivo in base alla selezione (+0, +1.50, ecc)
+                    const extraPrice = parseFloat(this.value);
+                    const finalPrice = (basePrice + extraPrice).toFixed(2);
+                    
+                    // Trova l'elemento del prezzo all'interno della stessa card
+                    const card = this.closest('.menu-item');
+                    const priceBtn = card.querySelector('.price-btn');
+                    
+                    // Effetto animato visivo sul prezzo
+                    priceBtn.style.transform = 'scale(1.1)';
+                    priceBtn.style.color = 'var(--white)';
+                    
+                    setTimeout(() => {
+                        priceBtn.textContent = `€${finalPrice}`;
+                        priceBtn.style.transform = 'scale(1)';
+                        priceBtn.style.color = 'var(--primary)';
+                    }, 150);
+                });
+            });
+
         });
     </script>
 </body>
